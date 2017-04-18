@@ -40,7 +40,7 @@ namespace ScrollChart
         {
             Series = new SeriesCollection()
             {
-                new LineSeries() { Title = "Age", Values = new ChartValues<double>() }
+                new LineSeries() { Title = "cos(x)", Values = new ChartValues<double>() }
             };
             ScrollerSeries = new SeriesCollection() // "shadow" series for the scrollable graph
             {
