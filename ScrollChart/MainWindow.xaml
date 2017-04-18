@@ -12,7 +12,7 @@
     </Window.DataContext>
     <Grid>
         <lv:CartesianChart Series="{Binding Path=Series}"/>
-        <lv:CartesianChart Series="{Binding Path=Series}" Grid.Row="1"/>
+        <lv:CartesianChart Series="{Binding Path=ScrollerSeries}" Grid.Row="1"/>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

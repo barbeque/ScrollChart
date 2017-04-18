@@ -3,6 +3,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Linq;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace ScrollChart
@@ -10,12 +11,17 @@ namespace ScrollChart
     class DemoViewModel : ViewModelBase
     {
         public SeriesCollection Series { get; private set; }
+        public SeriesCollection ScrollerSeries { get; private set; }
 
         public DemoViewModel()
         {
             Series = new SeriesCollection()
             {
                 new LineSeries() { Title = "Age", Values = new ChartValues<double>() }
+            };
+            ScrollerSeries = new SeriesCollection()
+            {
+                new LineSeries() { Values = Series.First().Values, Stroke = Brushes.DarkGray }
             };
 
             var timer = new DispatcherTimer();
