@@ -10,8 +10,31 @@ namespace ScrollChart
 {
     class DemoViewModel : ViewModelBase
     {
+        private double _from;
+        private double _to;
+
         public SeriesCollection Series { get; private set; }
         public SeriesCollection ScrollerSeries { get; private set; }
+
+        public double From
+        {
+            get { return _from;  }
+            set
+            {
+                _from = value;
+                RaisePropertyChanged(nameof(From));
+            }
+        }
+
+        public double To
+        {
+            get { return _to; }
+            set
+            {
+                _to = value;
+                RaisePropertyChanged(nameof(To));
+            }
+        }
 
         public DemoViewModel()
         {
@@ -19,10 +42,12 @@ namespace ScrollChart
             {
                 new LineSeries() { Title = "Age", Values = new ChartValues<double>() }
             };
-            ScrollerSeries = new SeriesCollection()
+            ScrollerSeries = new SeriesCollection() // "shadow" series for the scrollable graph
             {
-                new LineSeries() { Values = Series.First().Values, Stroke = Brushes.DarkGray }
+                new LineSeries() { Values = Series.First().Values, Stroke = Brushes.DarkGray, Fill = Brushes.Transparent, PointGeometry = null }
             };
+
+            From = 0; To = 1;
 
             var timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;

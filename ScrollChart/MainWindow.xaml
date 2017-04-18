@@ -11,9 +11,23 @@
         <local:DemoViewModel/>
     </Window.DataContext>
     <Grid>
-        <lv:CartesianChart Series="{Binding Path=Series}"/>
-        <lv:CartesianChart Series="{Binding Path=ScrollerSeries}" Grid.Row="1"/>
-
+        <lv:CartesianChart Series="{Binding Path=Series}">
+            <lv:CartesianChart.AxisX>
+                <lv:Axis x:Name="_detailAxis"
+                         MinValue="{Binding Path=From, Mode=TwoWay}"
+                         MaxValue="{Binding Path=To, Mode=TwoWay}"/>
+            </lv:CartesianChart.AxisX>
+        </lv:CartesianChart>
+        <lv:CartesianChart Series="{Binding Path=ScrollerSeries}" Grid.Row="1" DisableAnimations="True"
+                           ScrollMode="X" ScrollHorizontalFrom="{Binding Path=From, Mode=TwoWay}"
+                           ScrollHorizontalTo="{Binding Path=To, Mode=TwoWay}" Hoverable="False"
+                           x:Name="_scrollchart"
+                           DataTooltip="{x:Null}" MouseDoubleClick="CartesianChart_MouseDoubleClick">
+            <lv:CartesianChart.AxisX>
+                <lv:Axis x:Name="_scrollerXAxis" ShowLabels="False"/>
+            </lv:CartesianChart.AxisX>
+        </lv:CartesianChart>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
