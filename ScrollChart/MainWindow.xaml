@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScrollChart"
+        xmlns:lv="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:DemoViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <lv:CartesianChart Series="{Binding Path=Series}"/>
+        <lv:CartesianChart Series="{Binding Path=Series}" Grid.Row="1"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
     </Grid>
 </Window>
